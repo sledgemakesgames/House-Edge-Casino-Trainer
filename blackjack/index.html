@@ -23,6 +23,9 @@ body{margin:0;background:var(--felt-dark);color:var(--text);font-family:'Inter',
 .wrap{max-width:900px;margin:0 auto;}
 h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:30px;margin:0;letter-spacing:-0.4px;}
 .tagline{color:var(--text-muted);font-size:13.5px;margin:5px 0 0;letter-spacing:0.1px;}
+.back-link{display:inline-flex;align-items:center;gap:7px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:-0.1px;text-decoration:none;color:var(--text-muted);margin-bottom:14px;transition:color 140ms ease;}
+.back-link:hover{color:var(--brass-bright);}
+.back-link .back-dot{width:7px;height:7px;border-radius:50%;background:var(--brass);flex-shrink:0;}
 header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px;margin-bottom:22px;}
 button{font-family:'Inter',sans-serif;cursor:pointer;border-radius:9px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);padding:9px 14px;font-size:13px;font-weight:500;transition:background 140ms ease,border-color 140ms ease,transform 80ms ease;}
 button:hover{background:#24272D;border-color:rgba(237,238,240,0.18);}
@@ -144,9 +147,10 @@ h2.section{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px
 <body>
 <div class="wrap">
 
+<a class="back-link" href="/"><span class="back-dot"></span>House Edge</a>
 <header>
   <div>
-    <h1>House Edge</h1>
+    <h1>Blackjack</h1>
     <p class="tagline">A blackjack decision trainer — free play, no real money, built to teach correct strategy.</p>
   </div>
   <button id="btn-toggle-settings">Table settings</button>
