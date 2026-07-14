@@ -1,4 +1,4 @@
-# Soft 17
+# House Edge
 
 A free, browser-based blackjack strategy trainer — built to help new players get comfortable with real casino blackjack, one hand at a time.
 
@@ -26,10 +26,10 @@ Please enjoy!
 
 ## Getting started
 
-Soft 17 is a single self-contained HTML file — no installs, no build step, and no dependencies beyond one Google Fonts link.
+House Edge is a single self-contained HTML file — no installs, no build step, and no dependencies beyond one Google Fonts link.
 
 - **Play online:** *(link coming soon)*
-- **Run it locally:** download `soft17.html` and open it in any browser
+- **Run it locally:** download `index.html` and open it in any browser
 
 ## Roadmap
 
