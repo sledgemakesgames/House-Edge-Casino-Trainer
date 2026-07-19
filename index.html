@@ -5,9 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Table Ready — free casino strategy trainer</title>
 <meta name="description" content="A free practice casino for learning real strategy — blackjack is open now, more tables are on the way. No real money, ever.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Table Ready">
+<meta property="og:title" content="Table Ready — free casino strategy trainer">
+<meta property="og:description" content="A free practice casino for learning real strategy — blackjack is open now, more tables are on the way. No real money, ever.">
+<meta property="og:url" content="https://tableready.xyz/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Table Ready — free casino strategy trainer">
+<meta name="twitter:description" content="A free practice casino for learning real strategy — blackjack is open now, more tables are on the way. No real money, ever.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+@view-transition { navigation: auto; }
 :root{
   --felt:#0C0D10; --felt-dark:#08090B; --panel:#15171B; --panel-2:#1D2025;
   --card-face:#F4F5F7; --ink:#15171B;
@@ -20,6 +31,7 @@ html{scroll-behavior:smooth;}
 body{margin:0;background:var(--felt-dark);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
 a{color:inherit;}
+:focus-visible{outline:2px solid var(--brass-bright);outline-offset:3px;border-radius:4px;}
 
 /* ---------- header ---------- */
 header.site{display:flex;align-items:center;justify-content:space-between;padding:26px 0 0;}
@@ -58,6 +70,8 @@ header.site{display:flex;align-items:center;justify-content:space-between;paddin
 .table-card.show{opacity:1;transform:translateY(0);}
 .table-card.live{background:linear-gradient(160deg,#12241c 0%,var(--felt) 60%);}
 .table-card.locked{background:var(--panel);filter:saturate(0.55);}
+.table-card.up-next{filter:saturate(0.85);}
+.table-card.up-next:hover{border-color:rgba(214,169,75,0.28);}
 .table-card.live:hover{transform:translateY(-4px);border-color:rgba(214,169,75,0.4);box-shadow:0 18px 34px -18px rgba(214,169,75,0.35),0 0 0 1px rgba(214,169,75,0.12) inset;}
 .table-card.locked:hover{border-color:rgba(237,238,240,0.16);}
 .table-card .motif{height:56px;display:flex;align-items:center;}
@@ -66,6 +80,7 @@ header.site{display:flex;align-items:center;justify-content:space-between;paddin
 .badge{align-self:flex-start;font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;padding:4px 9px;border-radius:999px;}
 .badge.live{background:rgba(101,199,163,0.16);color:var(--sage-bright);}
 .badge.locked{background:rgba(237,238,240,0.08);color:var(--text-muted);}
+.badge.up-next{background:rgba(214,169,75,0.16);color:var(--brass-bright);}
 .table-card h3{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;margin:12px 0 4px;letter-spacing:-0.2px;}
 .table-card p{font-size:12.5px;color:var(--text-muted);margin:0;line-height:1.5;}
 .table-card a.cover{position:absolute;inset:0;}
@@ -115,7 +130,7 @@ footer a:hover{color:var(--brass-bright);}
   <section class="floor">
     <div class="floor-head">
       <p class="eyebrow">The floor</p>
-      <h2>Four tables. One bankroll.</h2>
+      <h2>Five tables. One bankroll.</h2>
     </div>
     <div class="floor-grid" id="floor-grid">
 
@@ -134,19 +149,19 @@ footer a:hover{color:var(--brass-bright);}
         <p>Hit, stand, split, and count your way to sharper decisions.</p>
       </div>
 
-      <div class="table-card locked" data-card>
-        <a class="cover" href="/baccarat/" aria-label="Baccarat, coming soon"></a>
+      <div class="table-card locked up-next" data-card>
+        <a class="cover" href="/baccarat/" aria-label="Baccarat, up next"></a>
         <div class="motif">
           <svg width="64" height="52" viewBox="0 0 64 52" fill="none">
-            <circle cx="24" cy="26" r="18" fill="none" stroke="#8A8F98" stroke-width="2"/>
-            <circle cx="42" cy="26" r="18" fill="none" stroke="#8A8F98" stroke-width="2"/>
-            <text x="16" y="32" font-family="Space Grotesk" font-size="15" font-weight="700" fill="#8A8F98">B</text>
-            <text x="46" y="32" font-family="Space Grotesk" font-size="15" font-weight="700" fill="#8A8F98">P</text>
+            <circle cx="24" cy="26" r="18" fill="none" stroke="#D6A94B" stroke-width="2"/>
+            <circle cx="42" cy="26" r="18" fill="none" stroke="#D6A94B" stroke-width="2"/>
+            <text x="16" y="32" font-family="Space Grotesk" font-size="15" font-weight="700" fill="#D6A94B">B</text>
+            <text x="46" y="32" font-family="Space Grotesk" font-size="15" font-weight="700" fill="#D6A94B">P</text>
           </svg>
         </div>
-        <span class="badge locked">Coming soon</span>
+        <span class="badge up-next">Up next</span>
         <h3>Baccarat</h3>
-        <p>The simplest math on the floor — bank on it.</p>
+        <p>The simplest math on the floor — actively in the works.</p>
       </div>
 
       <div class="table-card locked" data-card>
@@ -163,7 +178,7 @@ footer a:hover{color:var(--brass-bright);}
         </div>
         <span class="badge locked">Coming soon</span>
         <h3>Pai Gow Poker</h3>
-        <p>Set two hands right, and the Table Ready nearly disappears.</p>
+        <p>Set two hands right, and the house edge nearly disappears.</p>
       </div>
 
       <div class="table-card locked" data-card>
@@ -194,7 +209,7 @@ footer a:hover{color:var(--brass-bright);}
       </svg>
       <p>
         This started as something I wanted for myself — a way to actually feel confident sitting down at a real table instead of guessing and hoping. Table Ready plays out real hands, grades every decision against real strategy, and never once asks you to risk a dollar to learn.
-        <span class="sig">— Shane Guthrie</span>
+        <span class="sig">— SledgeMakesGames</span>
       </p>
     </div>
   </section>
