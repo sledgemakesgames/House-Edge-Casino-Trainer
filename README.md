@@ -28,7 +28,7 @@ Please enjoy!
 
 Table Ready is a single self-contained HTML file — no installs, no build step, and no dependencies beyond one Google Fonts link.
 
-- **Play online:** (https://tableready.xyz/)](https://tableready.xyz/)
+- **Play online:** (https://tableready.xyz/)]
 - **Run it locally:** download `index.html` and open it in any browser
 
 ## Roadmap
