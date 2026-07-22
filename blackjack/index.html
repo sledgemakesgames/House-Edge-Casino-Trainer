@@ -319,6 +319,7 @@ h2.section{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px
   <div id="count-bar" class="count-bar"></div>
 
   <p class="zone-label">Dealer</p>
+  <p class="hint-line" id="hint-goal" style="display:none;">Your hand is below, the dealer's is above — get closer to 21 without going over.</p>
   <div class="hands-row" id="dealer-box-row">
     <div class="hand-box" id="dealer-box">
       <span class="badge" id="dealer-badge" style="display:none;"></span>
@@ -363,6 +364,7 @@ h2.section{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px
         <button id="bet-allin" class="primary" style="font-size:12px;">All in</button>
         <button id="bet-clear" style="font-size:12px;">Clear</button>
       </div>
+      <p class="hint-line" id="hint-chips" style="display:none;">These are your chips — pick an amount, then hit Deal to start.</p>
       <p id="bet-tip" style="font-size:11.5px;color:var(--text-muted);margin:6px 0 0;"></p>
     </div>
     <label class="field" id="sb-pp-amt-wrap" style="display:none;">Perfect Pairs
@@ -581,7 +583,7 @@ var G={
   decks:2, payout:1.5, variant:'standard', hitSoft17:true,
   sidebets:{pp:false,tp:false,tl:false,bb:false},
   showCount:true, showSeen:false, turbo:false, insuranceEnabled:false, insuranceBet:0, showOdds:true, surrenderEnabled:false, drillsMode:false, soundOn:true, showDeviations:false, needsReshuffle:false, cutCardThreshold:0,
-  multiplayerEnabled:true, numBots:0, userSeatIndex:0, bots:[], dealerHadNaturalBJ:false, dealerStreak:0, tableReactionsEnabled:true, tooltipsEnabled:true, userWinStreak:0, seenFirstHandHints:false,
+  multiplayerEnabled:true, numBots:0, userSeatIndex:0, bots:[], dealerHadNaturalBJ:false, dealerStreak:0, tableReactionsEnabled:true, tooltipsEnabled:true, userWinStreak:0, seenFirstHandHints:false, seenChipsHint:false,
   shoe:[], runningCount:0, seenTally:{},
   bankroll:1000, phase:'betting',
   dealer:{cards:[]}, hands:[], activeIdx:0,
@@ -692,13 +694,27 @@ function fadeOutHint(el, delay){
     setTimeout(function(){ el.style.display='none'; }, 400);
   }, delay);
 }
+function showHintStaggered(id, appearDelay, visibleDuration){
+  var el = document.getElementById(id);
+  if(!el) return;
+  setTimeout(function(){
+    el.style.display='block';
+    el.classList.add('show');
+    fadeOutHint(el, visibleDuration);
+  }, appearDelay);
+}
 function maybeShowFirstHandHints(){
   if(G.seenFirstHandHints || G.history.length>0) return;
   G.seenFirstHandHints = true;
-  var h1 = document.getElementById('hint-holecard');
-  var h2 = document.getElementById('hint-chart');
-  if(h1){ h1.style.display='block'; h1.classList.add('show'); fadeOutHint(h1, 5000); }
-  if(h2){ h2.style.display='block'; h2.classList.add('show'); fadeOutHint(h2, 6500); }
+  showHintStaggered('hint-goal', 0, 4500);
+  showHintStaggered('hint-holecard', 700, 4500);
+  showHintStaggered('hint-chart', 1400, 5500);
+  saveSession();
+}
+function maybeShowChipsHint(){
+  if(G.seenChipsHint || G.history.length>0) return;
+  G.seenChipsHint = true;
+  showHintStaggered('hint-chips', 400, 5000);
   saveSession();
 }
 
@@ -1117,6 +1133,7 @@ function saveSession(){
       history:G.history,
       theme:G_theme,
       seenFirstHandHints:G.seenFirstHandHints,
+      seenChipsHint:G.seenChipsHint,
       settings:{
         decks:G.decks, payout:G.payout, variant:G.variant, hitSoft17:G.hitSoft17,
         sidebets:G.sidebets, showCount:G.showCount, showSeen:G.showSeen, turbo:G.turbo,
@@ -1148,6 +1165,7 @@ function applyLoadedSession(){
   if(!data) return;
   if(Array.isArray(data.history)) G.history=data.history;
   if(typeof data.seenFirstHandHints==='boolean') G.seenFirstHandHints=data.seenFirstHandHints;
+  if(typeof data.seenChipsHint==='boolean') G.seenChipsHint=data.seenChipsHint;
   if(data.settings){
     var s=data.settings;
     if(s.decks) document.getElementById('set-decks').value=String(s.decks);
@@ -2268,6 +2286,7 @@ freshShoeWithPrompt();
 renderAll();
 renderHistory();
 buildChart(G.activeTab);
+maybeShowChipsHint();
 </script>
 </body>
 </html>
